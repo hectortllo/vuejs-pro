@@ -11,10 +11,6 @@
           a.button.is-info.is-large(@click="search") Buscar
           a.button.is-danger.is-large &times;
 
-      
-      
-      
-      
       .container
         p
           small {{ searchMessage }}
@@ -27,7 +23,7 @@
 </template>
 
 <script>
-import trackService from './services/track'
+import trackService from "./services/track";
 
 export default {
   name: "App",
@@ -41,11 +37,12 @@ export default {
 
   methods: {
     search() {
-      if (!this.searchQuery) { return }
-      trackService.search(this.searchQuery)
-        .then(res => {
-          this.tracks = res.tracks.items
-        })
+      if (!this.searchQuery) {
+        return;
+      }
+      trackService.search(this.searchQuery).then(res => {
+        this.tracks = res.tracks.items;
+      });
     }
   },
 
