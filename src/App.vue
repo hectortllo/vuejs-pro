@@ -2,6 +2,9 @@
   #app
     pm-header
 
+    pm-notification(v-show="showNotification")
+      p(slot="body") No se encontraron resultados
+
     pm-loader(v-show="isLoading")
     section.section(v-show="!isLoading")
       nav.nav
@@ -33,16 +36,19 @@
 
 <script>
 import trackService from "./services/track";
+
 import PmFooter from "@/components/layout/Footer.vue";
 import PmHeader from "@/components/layout/Header.vue";
 
 import PmTrack from "@/components/Track.vue";
+
+import PmNotification from "@/components/shared/Notification.vue";
 import PmLoader from "@/components/shared/Loader.vue";
 
 export default {
   name: "App",
 
-  components: { PmFooter, PmHeader, PmTrack, PmLoader },
+  components: { PmFooter, PmHeader, PmTrack, PmLoader, PmNotification },
 
   data() {
     return {
@@ -50,8 +56,19 @@ export default {
       tracks: [],
 
       isLoading: false,
-      selectedTrack: ''
+      showNotification: false,
+      selectedTrack: ""
     };
+  },
+
+  watch: {
+    showNotification() {
+      if (this.showNotification) {
+        setTimeout(() => {
+          this.showNotification = false;
+        }, 3000);
+      }
+    }
   },
 
   methods: {
@@ -61,13 +78,15 @@ export default {
       }
 
       this.isLoading = true;
+
       trackService.search(this.searchQuery).then(res => {
+        this.showNotification = res.tracks.total === 0;
         this.tracks = res.tracks.items;
         this.isLoading = false;
       });
     },
 
-    setSelectedTrack(id){
+    setSelectedTrack(id) {
       this.selectedTrack = id;
     }
   },
@@ -87,7 +106,7 @@ export default {
   margin-top: 50px;
 }
 
-.is-active{
+.is-active {
   border: 3px #23d160 solid;
 }
 </style>

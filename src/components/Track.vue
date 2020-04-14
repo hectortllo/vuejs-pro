@@ -29,8 +29,8 @@ export default {
   },
 
   methods: {
-    selectTrack(){
-      this.$emit('select', this.track.id)
+    selectTrack() {
+      this.$emit("select", this.track.id);
     }
   }
 };
