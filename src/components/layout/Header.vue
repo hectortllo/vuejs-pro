@@ -3,7 +3,7 @@
     .hero-head
       header.nav
         .container
-          .nav-left
+          .nav-right
             .nav-item
               strong 📻  Platzi Music
             .nav-right.nav-menu
