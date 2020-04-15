@@ -94,7 +94,6 @@ export default {
 </script>
 
 <style lang="scss">
-
 .results {
   margin-top: 50px;
 }
