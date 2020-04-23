@@ -6,6 +6,7 @@ import msToMm from "@/filters/ms-to-mm";
 import blur from "@/directives/blur";
 
 import routes from "@/routes";
+import store from "@/store";
 import EventBus from "@/plugins/event-bus";
 
 Vue.use(EventBus);
@@ -21,5 +22,6 @@ Vue.config.productionTip = false;
 
 new Vue({
   router,
+  store,
   render: h => h(App)
 }).$mount("#app");
