@@ -7,6 +7,7 @@ import blur from "@/directives/blur";
 
 import routes from "@/routes";
 import store from "@/store";
+import i18n from "@/i18n";
 import EventBus from "@/plugins/event-bus";
 
 Vue.use(EventBus);
@@ -23,5 +24,6 @@ Vue.config.productionTip = false;
 new Vue({
   router,
   store,
+  i18n,
   render: h => h(App)
 }).$mount("#app");
